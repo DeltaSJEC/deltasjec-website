@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Icon from '../../components/Icon.jsx';
 import AccordionRow from './AccordionRow.jsx';
 import { ABOUT_IDS, PAGES } from '../../data.js';
+import { openWithTransition } from '../../pageTransition.js';
 
 function AreaHero({ page, hero }) {
   return (
@@ -42,7 +43,7 @@ function RelatedAreas({ currentId }) {
       <span className="related-label">Other areas</span>
       <div className="related-links">
         {others.map((id) => (
-          <a key={id} href={`#${id}`} className="related-link">
+          <a key={id} href={`#${id}`} className="related-link" onClick={(e) => openWithTransition(e, id)}>
             <Icon name={PAGES[id].icon} className="ic" />
             {PAGES[id].title}
           </a>
