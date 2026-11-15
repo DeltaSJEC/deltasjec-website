@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useEffect, useRef } from 'react';
 import Icon from './Icon.jsx';
 import SectionHead from './SectionHead.jsx';
@@ -19,9 +20,10 @@ function Socials({ p }) {
 const Meta = ({ p }) => (
   <dl className="meta"><dt>Branch</dt><dd>{p.b}</dd></dl>
 );
+const keyToggle = (fn) => (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } };
 
 // President / leads card: expands on hover/focus to show extra info
-function PersonCard({ p, seed, className = '' }) {
+function PersonCard({ p, seed, open, onToggle, className = '' }) {
   const cardRef = useRef(null);
   
   useEffect(() => {
@@ -39,7 +41,7 @@ function PersonCard({ p, seed, className = '' }) {
   }, []);
 
   return (
-    <article ref={cardRef} className={`pcard ${className}`} tabIndex={0} aria-label={`${p.n}, ${p.r}`}>
+    <article className={`pcard${open ? ' open' : ''} ${className}`} tabIndex={0} aria-label={`${p.n}, ${p.r}`} aria-expanded={open} onClick={onToggle} onKeyDown={keyToggle(onToggle)}>
       <img src={photoOf(p, seed)} alt={`Portrait of ${p.n}`} loading="lazy" />
       <div className="pinfo">
         <h3>{p.n}</h3>
@@ -59,7 +61,7 @@ function PersonCard({ p, seed, className = '' }) {
 }
 
 // Members: tall strip — hovered strip grows; others shrink
-function MemberStrip({ p, seed }) {
+function MemberStrip({ p, seed, open, onToggle }) {
   const stripRef = useRef(null);
 
   useEffect(() => {
@@ -77,7 +79,7 @@ function MemberStrip({ p, seed }) {
   }, []);
 
   return (
-    <article ref={stripRef} className="strip" tabIndex={0} aria-label={`${p.n}, ${p.r}`}>
+    <article className={`strip${open ? ' open' : ''}`} tabIndex={0} aria-label={`${p.n}, ${p.r}`} aria-expanded={open} onClick={onToggle} onKeyDown={keyToggle(onToggle)}>
       <img src={photoOf(p, seed)} alt={`Portrait of ${p.n}`} loading="lazy" />
       <div className="strip-shade" />
       <div className="strip-tag"><b>{p.n}</b><span>{p.r}</span></div>
@@ -93,6 +95,13 @@ function MemberStrip({ p, seed }) {
 }
 
 export default function Team() {
+
+  const [openId, setOpenId] = useState(null);
+  const toggle = (id) => () => {
+    if (!window.matchMedia('(hover: none)').matches) return;
+    setOpenId((cur) => (cur === id ? null : id));
+  };
+
   return (
     <section className="sec" id="team">
       <div className="wrap">
@@ -104,7 +113,7 @@ export default function Team() {
         <div className="tier">
           <div className="tier-label">Leadership</div>
           <div className="duo">
-            {TEAM.row1.map((p, i) => <PersonCard key={p.n} p={p} seed={i + 8} />)}
+            {TEAM.row1.map((p, i) => <PersonCard key={p.n} p={p} seed={i + 8} open={openId === p.n} onToggle={toggle(p.n)} />)}
           </div>
         </div>
 
@@ -112,7 +121,7 @@ export default function Team() {
         <div className="tier">
           <div className="tier-label">Department &amp; Team Leads</div>
           <div className="leads">
-            {TEAM.leads.map((p, i) => <PersonCard key={p.n} p={p} seed={i + 11} />)}
+            {TEAM.leads.map((p, i) => <PersonCard key={p.n} p={p} seed={i + 11} open={openId === p.n} onToggle={toggle(p.n)} />)}
           </div>
         </div>
 
@@ -120,7 +129,7 @@ export default function Team() {
         <div className="tier">
           <div className="tier-label">Members</div>
           <div className="strips">
-            {TEAM.members.map((p, i) => <MemberStrip key={p.n} p={p} seed={i + 20} />)}
+            {TEAM.members.map((p, i) => <MemberStrip key={p.n} p={p} seed={i + 20} open={openId === p.n} onToggle={toggle(p.n)} />)}
           </div>
         </div>
       </div>
