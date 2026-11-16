@@ -2,6 +2,7 @@ import Icon from './Icon.jsx';
 import SectionHead from './SectionHead.jsx';
 import { useInView } from '../hooks/hooks.js';
 import { ABOUT_IDS, PAGES } from '../data.js';
+import { openWithTransition } from '../pageTransition.js';
 
 // Fades in as it enters the viewport and fades back out as it leaves
 function AboutRow({ id }) {
@@ -14,7 +15,7 @@ function AboutRow({ id }) {
         <span className="eyebrow">{p.title}</span>
         <h3>{p.title}</h3>
         <p style={{ marginTop: 14 }}>{p.blurb}</p>
-        <a className="link-arrow" href={`#${id}`}>Explore {p.title} <Icon name="arrow" /></a>
+        <a className="link-arrow" href={`#${id}`} onClick={(e) => openWithTransition(e, id)}>Explore {p.title} <Icon name="arrow" /></a>
       </div>
       <div>
         <p className="small-label">Focus areas</p>
