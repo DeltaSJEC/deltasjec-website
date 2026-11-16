@@ -32,7 +32,7 @@ export default function About() {
     <section className="sec" id="about">
       <div className="wrap">
         <SectionHead eyebrow="About us" title="What we focus on">
-          Delta is organised around engineering, sustainability and media. Each area has its own projects, mentors and a page of its own.
+          Delta is organised around Four specialized tracks. Dedicated mentors. Real-world impact. Dive into our core pillars—Research, Engineering, Sustainability, and Media—to see what we’re building.
         </SectionHead>
         <div className="about-list">
           {ABOUT_IDS.map((id) => <AboutRow key={id} id={id} />)}

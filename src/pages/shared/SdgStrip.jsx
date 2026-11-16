@@ -55,10 +55,6 @@ export default function SdgStrip({ sdgs }) {
             <SdgBadge key={n} number={n} size={100} />
           ))}
         </div>
-
-        <div className="sdg-strip-legend">
-          <span className="sdg-strip-hint">Hover a badge to see the goal name</span>
-        </div>
       </div>
     </div>
   );

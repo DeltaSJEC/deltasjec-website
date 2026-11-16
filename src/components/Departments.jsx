@@ -65,7 +65,7 @@ export default function Departments() {
       <div className="dept-sticky">
         <div className="wrap">
           <SectionHead eyebrow="Departments" title="Where each project lives">
-            Every member belongs to one department. Projects pull people from all three.
+            Three core disciplines. One unified build team. Join a department, then collaborate across hardware, circuits, and code to ship real systems.
           </SectionHead>
           <div className="stack" ref={stackRef}>
             {DEPTS.map((d, i) => (

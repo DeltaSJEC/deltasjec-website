@@ -4,7 +4,7 @@
     title: 'Research',
     headline: 'Research That Moves Engineering Forward.',
     blurb:
-      'Faculty-mentored studies where control theory, energy systems and machine learning meet real hardware. Members move from a literature review to a validated result.',
+      'Faculty-guided R&D bridging control theory, energy systems, and machine learning with physical hardware—taking projects from literature review to validated results.',
     intro:
       'Research at Delta is built around five tracks that share one habit: model it, test it on hardware, and report what the data says.',
     items: [
@@ -551,7 +551,7 @@ export const TEAM = {
     {
       n: 'Darren Merce Aranha', b: 'Computer Science Engineering',
       r: 'Creative Editor',
-      q: 'Keep it simple, stupid.',
+      q: 'Design is thinking made visual.',
       photo: 'https://res.cloudinary.com/zmg7zosm/image/upload/v1794832691/darren.webp',
       linkedin: 'https://www.linkedin.com/in/darren-aranha-46298344a/',
       instagram: 'https://www.instagram.com/not.__.darren/',

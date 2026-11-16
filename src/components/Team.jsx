@@ -105,8 +105,8 @@ export default function Team() {
   return (
     <section className="sec" id="team">
       <div className="wrap">
-        <SectionHead eyebrow="Delta team" title="The people building it">
-          Hover or tap a card to see who they are, what they study and how to reach them.
+        <SectionHead eyebrow="Delta team" title="Meet the team">
+          One multidisciplinary team spanning Mechanical, Electronics, and Computer Science. Hover or tap any card to learn what they build and how to reach out.
         </SectionHead>
 
         {/* Row 1: Founder & President — 2 cards side by side */}
