@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Background from './components/Background.jsx';
 import Preloader from './components/Preloader.jsx';
 import Header from './components/Header.jsx';
@@ -56,6 +57,7 @@ export default function App() {
         </main>
       )}
       <Footer />
+      <Analytics />
     </>
   );
 }
